@@ -29,6 +29,33 @@ namespace IdentityServer.Config
                     },
 
                     AllowAccessToAllScopes = true
+                },
+
+                new Client
+                {
+                    Enabled = true,
+                    ClientId = "mvc_resourceowener",
+                    ClientName = "MVC Client (Resource Owener Password Credentials)",
+                    Flow = Flows.ResourceOwner,
+
+                    AllowedScopes = new List<string>
+                    {
+                        "openid"
+                    },
+
+                    ClientSecrets = new List<Secret>()
+                    {
+                        new Secret("supersecret".Sha256())
+                    },
+
+                    AccessTokenType = AccessTokenType.Jwt,
+                    AccessTokenLifetime = 3600,
+
+                    // refresh token settings
+                    //AbsoluteRefreshTokenLifetime = 86400,
+                    //SlidingRefreshTokenLifetime = 43200,
+                    //RefreshTokenUsage = TokenUsage.OneTimeOnly,
+                    //RefreshTokenExpiration = TokenExpiration.Sliding
                 }
             };
         }

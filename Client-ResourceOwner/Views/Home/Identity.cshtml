@@ -1,0 +1,17 @@
+﻿@model Client_ResourceOwner.Models.ClaimsModel
+
+<h2>@Model.Header</h2>
+<p>@Model.Message</p>
+<hr />
+<div style="width: 90%; word-wrap: break-word; margin-bottom: 50px;">
+    @if (Model.IsAuthenticated || Model.Claims != null)
+    {
+        <dl>
+            @foreach (var claim in Model.Claims ?? new List<KeyValuePair<string, string>>())
+            {
+                <dt>@claim.Key</dt>
+                <dd>@claim.Value</dd>
+            }
+        </dl>
+    }
+</div>
